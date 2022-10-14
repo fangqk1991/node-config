@@ -1,3 +1,3 @@
 const { makeRunningConfig } = require('./config.utils')
 
-module.exports.GlobalAppConfig = makeRunningConfig(true)
+export const GlobalAppConfig = makeRunningConfig(true)
