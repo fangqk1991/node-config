@@ -1,0 +1,34 @@
+{
+  "name": "@fangcha/config",
+  "version": "0.1.0",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "repository": "https://github.com/fangqk1991/node-config.git",
+  "keywords": [],
+  "author": "fang <me@fangqk.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@fangcha/eslint": "^0.2.0",
+    "@fangcha/tools": "^1.21.1",
+    "@types/assert": "^1.5.4",
+    "@types/mocha": "^8.2.2",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": true,
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "nyc": {
+    "sourceMap": false
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
