@@ -43,28 +43,31 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
 
     const defaultConfigPath = path.resolve(workspaceRoot, './config/default.json')
     const envConfigPath = path.resolve(workspaceRoot, `./config/${env}.js`)
-    const runtimeConfigPath = path.resolve(workspaceRoot, './config/runtime.extras.js')
 
     let envConfig = {}
     let defaultConfig = {}
     let runtimeConfig = {}
     let extraConfig = {}
+
+    // NODE_CONFIG_EXTRA_JS should use absolute-path
+    const extrasConfigPath = process.env.NODE_CONFIG_EXTRA_JS
     if (typeof __non_webpack_require__ === 'function') {
       // For node.js Runtime
+      console.info(`__non_webpack_require__ is a function, for runtime`)
       defaultConfig = __non_webpack_require__(defaultConfigPath)
       envConfig = __non_webpack_require__(envConfigPath)
-      if (process.env.NODE_CONFIG_EXTRA_JS) {
-        // NODE_CONFIG_EXTRA_JS should use absolute-path
-        extraConfig = __non_webpack_require__(process.env.NODE_CONFIG_EXTRA_JS)
-      }
-      if (fs.existsSync(runtimeConfigPath)) {
-        runtimeConfig = __non_webpack_require__(runtimeConfigPath)
+      if (extrasConfigPath) {
+        extraConfig = __non_webpack_require__(extrasConfigPath)
       }
     } else {
+      console.info(`__non_webpack_require__ is undefined, maybe for webpack building`)
       // For webpack building
       defaultConfig = require(defaultConfigPath)
       if (fs.existsSync(envConfigPath)) {
         envConfig = require(envConfigPath)
+      }
+      if (extrasConfigPath) {
+        extraConfig = require(extrasConfigPath)
       }
     }
 
