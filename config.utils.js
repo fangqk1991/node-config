@@ -52,16 +52,12 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
     // NODE_CONFIG_EXTRA_JS should use absolute-path
     const extrasConfigPath = process.env.NODE_CONFIG_EXTRA_JS
     if (typeof __non_webpack_require__ === 'function') {
-      // For node.js Runtime
-      console.info(`__non_webpack_require__ is a function, for runtime`)
       defaultConfig = __non_webpack_require__(defaultConfigPath)
       envConfig = __non_webpack_require__(envConfigPath)
       if (extrasConfigPath) {
         extraConfig = __non_webpack_require__(extrasConfigPath)
       }
     } else {
-      console.info(`__non_webpack_require__ is undefined, maybe for webpack building`)
-      // For webpack building
       defaultConfig = require(defaultConfigPath)
       if (fs.existsSync(envConfigPath)) {
         envConfig = require(envConfigPath)
