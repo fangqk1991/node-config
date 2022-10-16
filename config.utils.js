@@ -45,9 +45,8 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
     const defaultConfigPath2 = path.resolve(workspaceRoot, './config/default.json')
     const envConfigPath = path.resolve(workspaceRoot, `./config/${env}.js`)
 
-    let envConfig = {}
     let defaultConfig = {}
-    let runtimeConfig = {}
+    let envConfig = {}
     let extraConfig = {}
 
     // NODE_CONFIG_EXTRA_JS should use absolute-path
@@ -55,9 +54,9 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
     const requireFunc = typeof __non_webpack_require__ === 'function' ? __non_webpack_require__ : require
 
     if (fs.existsSync(defaultConfigPath)) {
-      envConfig = requireFunc(defaultConfigPath)
+      defaultConfig = requireFunc(defaultConfigPath)
     } else if (fs.existsSync(defaultConfigPath2)) {
-      envConfig = requireFunc(defaultConfigPath2)
+      defaultConfig = requireFunc(defaultConfigPath2)
     }
     if (fs.existsSync(envConfigPath)) {
       envConfig = requireFunc(envConfigPath)
@@ -76,7 +75,6 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
       envConfigDataExtras,
       envConfigData,
       extraConfig,
-      runtimeConfig,
       envConfig,
       defaultConfig
     )
