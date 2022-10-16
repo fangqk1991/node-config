@@ -33,11 +33,11 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
     while (!workspaceRoot) {
       const root = path.resolve(cwd, _.repeat('../', i))
       i += 1
-      if (fs.existsSync(path.resolve(root, './config/default.json'))) {
+      if (fs.existsSync(path.resolve(root, './config/default.js')) || fs.existsSync(path.resolve(root, './config/default.json'))) {
         workspaceRoot = root
       }
       if (root === '/') {
-        throw new Error('config/default.json missing.')
+        throw new Error('Neither config/default.js or config/default.json exists.')
       }
     }
 
