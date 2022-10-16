@@ -1,6 +1,6 @@
 {
   "name": "@fangcha/config",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "index.js",
   "typings": "index.d.ts",
   "repository": "https://github.com/fangqk1991/node-config.git",

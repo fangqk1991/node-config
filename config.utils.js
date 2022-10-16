@@ -41,7 +41,8 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
       }
     }
 
-    const defaultConfigPath = path.resolve(workspaceRoot, './config/default.json')
+    const defaultConfigPath = path.resolve(workspaceRoot, './config/default.js')
+    const defaultConfigPath2 = path.resolve(workspaceRoot, './config/default.json')
     const envConfigPath = path.resolve(workspaceRoot, `./config/${env}.js`)
 
     let envConfig = {}
@@ -51,22 +52,19 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
 
     // NODE_CONFIG_EXTRA_JS should use absolute-path
     const extrasConfigPath = process.env.NODE_CONFIG_EXTRA_JS
-    if (typeof __non_webpack_require__ === 'function') {
-      defaultConfig = __non_webpack_require__(defaultConfigPath)
-      envConfig = __non_webpack_require__(envConfigPath)
-      if (extrasConfigPath) {
-        extraConfig = __non_webpack_require__(extrasConfigPath)
-      }
-    } else {
-      defaultConfig = require(defaultConfigPath)
-      if (fs.existsSync(envConfigPath)) {
-        envConfig = require(envConfigPath)
-      }
-      if (extrasConfigPath) {
-        extraConfig = require(extrasConfigPath)
-      }
-    }
+    const requireFunc = typeof __non_webpack_require__ === 'function' ? __non_webpack_require__ : require
 
+    if (fs.existsSync(defaultConfigPath)) {
+      envConfig = requireFunc(defaultConfigPath)
+    } else if (fs.existsSync(defaultConfigPath2)) {
+      envConfig = requireFunc(defaultConfigPath2)
+    }
+    if (fs.existsSync(envConfigPath)) {
+      envConfig = requireFunc(envConfigPath)
+    }
+    if (extrasConfigPath) {
+      extraConfig = requireFunc(extrasConfigPath)
+    }
     if (_.isEmpty(envConfig) && env !== 'development') {
       throw new Error(`config/${env}.js missing.`)
     }
