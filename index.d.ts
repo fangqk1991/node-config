@@ -1,3 +1,3 @@
-import defaultConfig from '../../config/default'
+const defaultConfig = require('../../config/default')
 
 export const GlobalAppConfig = defaultConfig

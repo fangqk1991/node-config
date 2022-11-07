@@ -1,6 +1,6 @@
 {
   "name": "fc-config",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "main": "index.js",
   "typings": "index.d.ts",
   "repository": "https://github.com/fangqk1991/node-config.git",
