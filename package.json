@@ -1,6 +1,6 @@
 {
-  "name": "@fangcha/config",
-  "version": "0.5.1",
+  "name": "fc-config",
+  "version": "0.10.0",
   "main": "index.js",
   "typings": "index.d.ts",
   "repository": "https://github.com/fangqk1991/node-config.git",
@@ -8,11 +8,11 @@
   "author": "fang <me@fangqk.com>",
   "license": "MIT",
   "devDependencies": {
-    "@fangcha/eslint": "^0.2.0",
-    "@fangcha/tools": "^1.21.1",
-    "@types/assert": "^1.5.4",
-    "@types/mocha": "^8.2.2",
-    "mocha": "^10.0.0",
+    "@fangcha/eslint": "^0.3.0",
+    "@fangcha/tools": "^1.22.0",
+    "@types/assert": "^1.5.6",
+    "@types/mocha": "^10.0.0",
+    "mocha": "^10.1.0",
     "nyc": "^15.1.0"
   },
   "prettier": {

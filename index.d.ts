@@ -1,1 +1,3 @@
-export const GlobalAppConfig: any
+import defaultConfig from '../../config/default'
+
+export const GlobalAppConfig = defaultConfig

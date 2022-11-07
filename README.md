@@ -1,12 +1,12 @@
-# @fangcha/config
+# fc-config
 
 ## Installation
 ```
 # Use npm
-npm install @fangcha/config
+npm install fc-config
 
 # Or use yarn
-yarn add @fangcha/config
+yarn add fc-config
 ```
 
 ## Prepare
@@ -23,7 +23,7 @@ module.exports = {
 
 ## Usage
 ```
-import { GlobalAppConfig } from '@fangcha/config'
+import { GlobalAppConfig } from 'fc-config'
 
 ...
 ```
