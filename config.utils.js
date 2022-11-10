@@ -60,12 +60,11 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
     }
     if (fs.existsSync(envConfigPath)) {
       envConfig = requireFunc(envConfigPath)
+    } else {
+      console.warn(`config/${env}.js missing.`)
     }
     if (extrasConfigPath) {
       extraConfig = requireFunc(extrasConfigPath)
-    }
-    if (_.isEmpty(envConfig) && env !== 'development') {
-      throw new Error(`config/${env}.js missing.`)
     }
 
     _configData = _.defaultsDeep(
