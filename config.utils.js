@@ -44,10 +44,12 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
     const defaultConfigPath = path.resolve(workspaceRoot, './config/default.js')
     const defaultConfigPath2 = path.resolve(workspaceRoot, './config/default.json')
     const envConfigPath = path.resolve(workspaceRoot, `./config/${env}.js`)
+    const runtimeConfigPath = path.resolve(workspaceRoot, './config/runtime.config.js')
 
     let defaultConfig = {}
     let envConfig = {}
     let extraConfig = {}
+    let runtimeConfig = {}
 
     // NODE_CONFIG_EXTRA_JS should use absolute-path
     const extrasConfigPath = process.env.NODE_CONFIG_EXTRA_JS
@@ -57,6 +59,9 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
       defaultConfig = requireFunc(defaultConfigPath)
     } else if (fs.existsSync(defaultConfigPath2)) {
       defaultConfig = requireFunc(defaultConfigPath2)
+    }
+    if (fs.existsSync(runtimeConfigPath)) {
+      runtimeConfig = requireFunc(runtimeConfigPath)
     }
     if (fs.existsSync(envConfigPath)) {
       envConfig = requireFunc(envConfigPath)
@@ -75,6 +80,7 @@ module.exports.makeRunningConfig = (clearEnvData = false) => {
       envConfigData,
       extraConfig,
       envConfig,
+      runtimeConfig,
       defaultConfig
     )
   }
